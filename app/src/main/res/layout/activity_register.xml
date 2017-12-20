@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_background">
+
+    <TextView
+        android:id="@+id/tv_back_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:textSize="@dimen/text_24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/logo_register"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/logo1" />
+
+    <EditText
+        android:id="@+id/et_id_register"
+        android:layout_width="@dimen/et_welcome_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/et_bg"
+        android:hint="电话号码"
+        android:inputType="number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:padding="@dimen/et_padding" />
+
+    <LinearLayout
+        android:id="@+id/ll_register"
+        android:layout_width="@dimen/et_welcome_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_id_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_code_register"
+            android:layout_width="177dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_bg"
+            android:hint="验证码"
+            android:inputType="number"
+            android:maxLength="@integer/code_length"
+            android:maxLines="1"
+            android:padding="@dimen/et_padding" />
+
+        <Button
+            android:id="@+id/btn_code_register"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_down"
+            android:text="获取验证码"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_password_register"
+        android:layout_width="@dimen/et_welcome_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/et_bg"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:maxLength="24"
+        android:maxLines="1"
+        android:padding="@dimen/et_padding" />
+
+    <EditText
+        android:id="@+id/et_password2_register"
+        android:layout_width="@dimen/et_welcome_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_password_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/et_bg"
+        android:hint="再次输入密码"
+        android:inputType="textPassword"
+        android:maxLength="24"
+        android:maxLines="1"
+        android:padding="@dimen/et_padding" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="@dimen/et_welcome_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_password2_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_bg"
+        android:text="确认"
+        android:textSize="20sp" />
+</RelativeLayout>

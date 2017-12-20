@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_item_relative"
+    android:orientation="vertical"
+    android:layout_marginStart="8dp"
+    android:layout_width="64dp"
+    android:layout_height="92dp">
+    <ImageView
+        android:layout_marginTop="8dp"
+        android:id="@+id/pop_item_img"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+        android:scaleType="centerInside"
+        />
+    <TextView
+        android:layout_below="@+id/pop_item_img"
+        android:layout_marginTop="8dp"
+        android:id="@+id/pop_item_text"
+        android:layout_width="64dp"
+        android:layout_height="16dp"
+        android:text="木门"
+        android:gravity="center"
+        />
+</RelativeLayout>

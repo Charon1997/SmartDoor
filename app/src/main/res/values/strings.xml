@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SFF</string>
+
+    <integer name="code_length">4</integer>
+</resources>
