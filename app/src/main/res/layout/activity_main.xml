@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_back"
     android:background="@drawable/mode1"
     tools:context="nexuslink.charon.smartdoor.ui.activity.main.MainActivity">
     <ImageView
@@ -18,5 +19,13 @@
         android:layout_alignParentRight="true"
         android:layout_margin="8dp"
         android:src="@drawable/logo2"/>
+    <ImageView
+        android:id="@+id/main_tip_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/arrow_up"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
 
 </RelativeLayout>

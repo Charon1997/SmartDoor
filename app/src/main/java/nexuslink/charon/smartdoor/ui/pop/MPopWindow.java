@@ -18,7 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nexuslink.charon.smartdoor.R;
+import nexuslink.charon.smartdoor.contract.main.MainContract;
+import nexuslink.charon.smartdoor.model.main.MainModel;
 import nexuslink.charon.smartdoor.ui.adapter.PopViewPagerAdapter;
+import nexuslink.charon.smartdoor.ui.adapter.RecDoorAdapter;
+import nexuslink.charon.smartdoor.ui.adapter.RecSceneAdapter;
+
+import static nexuslink.charon.smartdoor.utils.Constant.BACK_IMG_LIST;
+import static nexuslink.charon.smartdoor.utils.Constant.DOOR_IMG_LIST;
 
 /**
  * 项目名称：SmartDoor
@@ -34,42 +41,41 @@ import nexuslink.charon.smartdoor.ui.adapter.PopViewPagerAdapter;
 public class MPopWindow extends PopupWindow {
     private static final String TAG = MPopWindow.class.getSimpleName();
     public Context mContext;
-    private List<View> list;
-    private List<ItemBean> modeList = new ArrayList<>();
-    private List<ItemBean> doorList = new ArrayList<>();
-    private RecyclerView recyclerView1, recyclerView2, recyclerView3;
-    private int imgDoor[] = {R.drawable.door1};
-    private int background[] = {R.drawable.background2};
+    private List<View> list ;
     private TabLayout mTL;
     private NoScrollViewPager mVp;
-    private IMainView mainView;
-    //private Button button;
+    private MainContract.View mainView;
+    private List<MainModel.ItemModel> sceneList = new ArrayList<>();
+    private List<MainModel.ItemModel> doorlList = new ArrayList<>();
+    private RecyclerView recyclerView1,recyclerView2,recyclerView3;
 
-    public MPopWindow(Context context, IMainView mainView) {
+    public MPopWindow(Context context,MainContract.View mainView) {
         this.mainView = mainView;
         initView(context);
     }
 
     private void addDoor() {
-        for (int i = 0; i < imgDoor.length; i++) {
-            ItemBean itemBean = new ItemBean(imgDoor[i], "门" + i);
-            doorList.add(itemBean);
+        for (int i = 0; i < DOOR_IMG_LIST.length; i++) {
+            MainModel mainModel = new MainModel();
+            MainModel.ItemModel itemBean = mainModel.new ItemModel(i, "门" + i,DOOR_IMG_LIST[i]);
+            doorlList.add(itemBean);
         }
-        for (int i = 0; i < background.length; i++) {
-            ItemBean itemBean = new ItemBean(background[i], "风格" + i);
-            modeList.add(itemBean);
+        for (int i = 0;i < BACK_IMG_LIST.length;i++) {
+            MainModel mainModel = new MainModel();
+            MainModel.ItemModel itemBean = mainModel.new ItemModel(i, "门" + i,BACK_IMG_LIST[i]);
+            sceneList.add(itemBean);
         }
     }
 
     private void initView(Context mContext) {
         this.mContext = mContext;
-        View v = LayoutInflater.from(mContext).inflate(R.layout.activity_pop,
+        View v = LayoutInflater.from(mContext).inflate(R.layout.pop_tab_layout,
                 null);
         setContentView(v);
-
-        mTL = (TabLayout) v.findViewById(R.id.pop_tab);
-        mVp = (NoScrollViewPager) v.findViewById(R.id.pop_viewpager);
+        mTL = v.findViewById(R.id.pop_tab);
+        mVp = v.findViewById(R.id.pop_viewpager);
         addDoor();
+
         // 设置SelectPicPopupWindow弹出窗体的宽
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         // 设置SelectPicPopupWindow弹出窗体的高
@@ -97,66 +103,39 @@ public class MPopWindow extends PopupWindow {
     private void addView() {
         list = new ArrayList<>();
         View view1 = LayoutInflater.from(mContext).inflate(R.layout.pop_list, null);
-        recyclerView1 = (RecyclerView) view1.findViewById(R.id.pop_recycler);
+        recyclerView1 = view1.findViewById(R.id.pop_recycler);
         LinearLayoutManager manager1 = new LinearLayoutManager(mContext);
         manager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView1.setLayoutManager(manager1);
         recyclerView1.setItemAnimator(new DefaultItemAnimator());
-        RecDoorAdapter adapter1 = new RecDoorAdapter(mContext, doorList, mainView);
+        RecDoorAdapter adapter1 = new RecDoorAdapter(mContext, doorlList, mainView);
         recyclerView1.setAdapter(adapter1);
         list.add(view1);
 
-
         View view2 = LayoutInflater.from(mContext).inflate(R.layout.pop_list, null);
-        recyclerView2 = (RecyclerView) view2.findViewById(R.id.pop_recycler);
+        recyclerView2 = view2.findViewById(R.id.pop_recycler);
         list.add(view2);
 
         View view3 = LayoutInflater.from(mContext).inflate(R.layout.pop_list, null);
-        recyclerView3 = (RecyclerView) view3.findViewById(R.id.pop_recycler);
+        recyclerView3 = view3.findViewById(R.id.pop_recycler);
         LinearLayoutManager manager3 = new LinearLayoutManager(mContext);
         manager3.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView3.setLayoutManager(manager3);
         recyclerView3.setItemAnimator(new DefaultItemAnimator());
-        RecModeAdapter adapter3 = new RecModeAdapter(mContext, modeList, mainView);
+        RecSceneAdapter adapter3 = new RecSceneAdapter(mContext, sceneList, mainView);
         recyclerView3.setAdapter(adapter3);
         list.add(view3);
     }
 
     public void showPopupWindow(View parent) {
-        //float height = ScreenUtils.dip2px(mContext, 148);
         if (!this.isShowing()) {
             //动画
             Log.d(TAG, "showPopupWindow: show");
-//            AnimatorSet set = new AnimatorSet();
-//            ObjectAnimator ob1 = ObjectAnimator.ofFloat(button, "TranslationY", 0, -height);
-//            ObjectAnimator ob2 = ObjectAnimator.ofFloat(button, "rotation", 0, 180);
-//            set.playTogether(ob1, ob2);
-//            set.setDuration(300);
-//            set.start();
             this.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         } else {
             Log.d(TAG, "showPopupWindow: close");
-//            AnimatorSet set = new AnimatorSet();
-//            ObjectAnimator ob1 = ObjectAnimator.ofFloat(button, "TranslationY", -height, 0);
-//            ObjectAnimator ob2 = ObjectAnimator.ofFloat(button, "rotation", 180, 360);
-//            set.playTogether(ob1, ob2);
-//            set.setDuration(300);
-//            set.start();
             this.dismiss();
         }
-    }
-
-
-    public interface onGetTypeClickListener {
-        void getType(int type);
-
-        void getImgUri(Uri imgUri, File file);
-    }
-
-    private onGetTypeClickListener listener;
-
-    public void setOnGetTypeClickListener(onGetTypeClickListener listener) {
-        this.listener = listener;
     }
 
 }

@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:layout_marginStart="8dp"
     android:layout_width="64dp"
-    android:layout_height="92dp">
+    android:layout_height="100dp">
     <ImageView
         android:layout_marginTop="8dp"
         android:id="@+id/pop_item_img"
         android:layout_width="64dp"
         android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher"
         android:scaleType="centerInside"
         />
     <TextView
@@ -17,7 +18,9 @@
         android:layout_marginTop="8dp"
         android:id="@+id/pop_item_text"
         android:layout_width="64dp"
-        android:layout_height="16dp"
+        android:layout_height="24dp"
+        android:textSize="@dimen/text_20sp"
+        android:textColor="@color/black"
         android:text="木门"
         android:gravity="center"
         />

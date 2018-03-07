@@ -1,5 +1,7 @@
 package nexuslink.charon.smartdoor.utils;
 
+import nexuslink.charon.smartdoor.R;
+
 /**
  * 项目名称：SmartDoor
  * 类描述：
@@ -48,5 +50,9 @@ public class Constant {
      */
     public static final int CODE_LENGTH = 4;
 
+    public static final int[] BACK_IMG_LIST = {R.drawable.mode1, R.drawable.mode2, R.drawable.mode3};
 
+    public static final int[] DOOR_IMG_LIST = {R.drawable.door1, R.drawable.door2, R.drawable.door3,R.drawable.door4,R.drawable.door5};
+
+    public static final int DURATION = 1000;
 }
